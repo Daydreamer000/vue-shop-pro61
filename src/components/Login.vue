@@ -54,8 +54,8 @@ export default {
   data() {
     return {
       loginForm: {
-        username: '',
-        password: ''
+        username: 'admin',
+        password: '123456'
       },
       loginFormRules: {
         username: [
@@ -72,16 +72,15 @@ export default {
         // valid:true 校验成功
         // valid:false 校验成功
 
-        const {data:res} = await this.$http.post('login',this.loginForm)
-        if(res.meta.status !== 200){
+        const { data: res } = await this.$http.post('login', this.loginForm)
+        if (res.meta.status !== 200) {
           return this.$message.error('用户名或密码不正确')
         }
         this.$message.success('登录成功')
 
-        window.sessionStorage.setItem('token',res.data.token)
+        window.sessionStorage.setItem('token', res.data.token)
         // console.log(res)
         this.$router.push('/home')
- 
       })
     },
     resetForm() {
